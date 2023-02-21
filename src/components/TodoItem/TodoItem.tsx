@@ -1,15 +1,16 @@
 import React from "react";
+import {Todo} from "../../redux/slices/todoSlice";
 
 interface TodoItemProps {
     todoshka: string,
-    id: string,
-    todos: string[],
+    id: Date,
+    todos: Todo[],
     setTodos: any
 }
 
 export function TodoItem({todoshka, id, todos, setTodos}: TodoItemProps) {
     const removeTodo = () => {
-        setTodos(todos.filter((todo) => todo.toString() !== id))
+        setTodos(todos.filter((todo) => todo.id !== id))
     }
 
     return (

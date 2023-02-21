@@ -1,14 +1,15 @@
 import React from "react";
 import {TodoItem} from "../TodoItem/TodoItem";
+import {Todo} from "../../redux/slices/todoSlice";
 
 interface TodoListProps {
-    todos: string[],
+    todos: Todo[],
     setTodos: any,
 }
 
 export function TodoList({todos, setTodos}: TodoListProps) {
-    let todosItems = todos.map((todoshka: string) =>
-        <TodoItem key={todoshka.toString()} todoshka={todoshka} id={todoshka.toString()} todos={todos} setTodos={setTodos}/>
+    let todosItems = todos.map((todoshka: Todo) =>
+        <TodoItem key={todoshka.toString()} todoshka={todoshka.text} id={todoshka.id} todos={todos} setTodos={setTodos}/>
     );
 
     return (
