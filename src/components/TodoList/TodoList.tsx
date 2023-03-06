@@ -1,16 +1,20 @@
 import React from "react";
 import {TodoItem} from "../TodoItem/TodoItem";
 import {Todo} from "../../redux/slices/todoSlice";
+import {useSelector} from "react-redux";
+import {Store} from "../../redux/store/store";
 
-interface TodoListProps {
-    todos: Todo[],
-    setTodos: any,
-}
 
-export function TodoList({todos, setTodos}: TodoListProps) {
-    let todosItems = todos.map((todoshka: Todo) =>
-        <TodoItem key={todoshka.toString()} todoshka={todoshka.text} id={todoshka.id} todos={todos} setTodos={setTodos}/>
-    );
+export function TodoList() {
+    const todos: Todo[] = useSelector((state: Store) => state.todos.todos);
+    let todosItems;
+
+
+    if (todos.length) {
+        todosItems = todos.map((todoshka: Todo) =>
+            <TodoItem key={todoshka.id} text={todoshka.text} id={todoshka.id}/>
+        );
+    }
 
     return (
         <ul className='container flex flex-col max-w-2xl mx-auto text-left'>

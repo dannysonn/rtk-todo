@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 export interface Todo {
-    id: Date,
+    id: string,
     text: string,
 }
 
@@ -18,16 +18,15 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo(state, action) {
-            console.log(state)
-            console.log(action)
-
             state.todos.push({
-                id: new Date(),
-                text: action.payload.text,
+                id: new Date().toISOString(),
+                text: action.payload,
             })
         },
         removeTodo(state, action) {
-
+            state.todos = state.todos.filter((todo) => {
+                return todo.id != action.payload
+            })
         },
     },
 })
