@@ -9,17 +9,16 @@ function App() {
     const initialTodos: Todo[] = [];
     const [todoText, setTodoText] = useState('');
     const dispatch = useDispatch();
-    const inputRef = useRef<HTMLInputElement>(null);
 
     const addTodoHandler = () => {
         dispatch(addTodo(todoText));
-        inputRef.current!.value = '';
+        setTodoText('')
     }
 
     return (
         <div className="App">
             <label className='mt-10 container flex max-w-2xl mx-auto'>
-                <input className='border-4 border-emerald-500 p-2 w-full' type="text" placeholder='Добавить тудушку' ref={inputRef} onChange={(e) => setTodoText(e.currentTarget.value)}/>
+                <input className='border-4 border-emerald-500 p-2 w-full' type="text" placeholder='Добавить тудушку' onChange={(e) => setTodoText(e.currentTarget.value)} value={todoText}/>
                 <button className='p-2 bg-emerald-500 text-white w-1/4 border-4' onClick={addTodoHandler}>Добавить</button>
             </label>
 
